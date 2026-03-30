@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Task: Lists, Tables & Forms</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #0056b3;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #004494;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>HTML TASK: Lists, Tables & Forms</h1>
+
+    <h2>1. Create a List</h2>
+    <p>Create an ordered list of 'Steps to Make a Sandwich':</p>
+    <ol>
+        <li>Gather Ingredients</li>
+        <li>Spread the Condiments</li>
+        <li>Add the Fillings</li>
+        <li>Put the Sandwich Together</li>
+    </ol>
+
+    <h2>2. Build a Table</h2>
+    <p>Create a table showing "Student Grades":</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John</td>
+                <td>Math</td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <td>Sarah</td>
+                <td>Science</td>
+                <td>B+</td>
+            </tr>
+            <tr>
+                <td>Mike</td>
+                <td>History</td>
+                <td>C</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>3. Create a Form</h2>
+    <p>Design a 'Contact Us' form with the following fields:</p>
+    <ul>
+        <li>Name</li>
+        <li>Email</li>
+        <li>Message</li>
+        <li>Submit Button</li>
+    </ul>
+    <form action="#" method="POST">
+        <h3>Contact Us</h3>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4"></textarea>
+        </div>
+        <input type="submit" value="Send Message">
+    </form>
+
+    <p style="text-align: center; font-style: italic; margin-top: 40px;">Complete all tasks using proper HTML!</p>
+
+
+</body>
+</html>

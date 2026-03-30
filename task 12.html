@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bridge — Seattle Organic Market</title>
+  <style>
+    * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ html {
+     scroll-behavior: smooth;
+ }
+
+ body {
+     font-family: 'Lato', sans-serif;
+     color: #333;
+     overflow-x: hidden;
+ }
+
+ a {
+     text-decoration: none;
+     color: inherit;
+ }
+
+ ul {
+     list-style: none;
+ }
+
+ img {
+     display: block;
+     max-width: 100%;
+ }
+
+ .navbar {
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     z-index: 9999;
+     height: 66px;
+     display: flex;
+     align-items: center;
+     padding: 0 44px;
+   
+ }
+
+
+ .nav-logo {
+     font-family: 'Raleway', sans-serif;
+     font-size: 1.65rem;
+     font-weight: 300;
+     color: #2b2b2b;
+     margin-right: auto;
+ }
+
+ .nav-links {
+     display: flex;
+     align-items: center;
+ }
+
+ .nav-links li a {
+     display: block;
+     padding: 0 18px;
+     font-size: 0.8rem;
+     font-weight: 400;
+     letter-spacing: 0.04em;
+     color: #555;
+ }
+
+ .nav-links li a:hover {
+     color: #222;
+ }
+
+ .nav-links li a.active {
+     color: #8cc152;
+     font-weight: 500;
+ }
+
+ .nav-social {
+     display: flex;
+     align-items: center;
+     gap: 16px;
+     margin-left: 20px;
+     padding-left: 16px;
+     border-left: 1px solid #ddd;
+ }
+
+ .nav-social a {
+     font-size: 0.78rem;
+     font-weight: 700;
+     color: #888;
+ }
+
+ .nav-social a:hover {
+     color: #2b2b2b;
+ }
+
+ .nav-social .pin {
+     font-style: italic;
+     font-family: Georgia, serif;
+     font-size: 1rem;
+ }
+
+
+ .wrapper {
+     position: relative;
+     height: 300vh;
+ }
+
+
+ .firstsection {
+     position: sticky;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100vh;
+     z-index: 1;
+
+     background-image: url('./main-home-slider-image-1.jpg');
+     background-size: cover;
+     background-position: center center;
+     background-repeat: no-repeat;
+     background-color: #efefef;
+
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+
+     /* SCROLL DRIVEN — hero moves up + fades */
+     animation: heroScrollOut linear both;
+     animation-timeline: scroll(root);
+     animation-range: 0vh 100vh;
+ }
+
+ @keyframes heroScrollOut {
+     0% {
+         opacity: 1;
+         transform: translateY(0);
+     }
+
+     60% {
+         opacity: 0.3;
+         transform: translateY(-60px);
+     }
+
+     100% {
+         opacity: 0;
+         transform: translateY(-120px);
+     }
+ }
+
+ /* light overlay */
+ .firstsection::before {
+     content: '';
+     position: absolute;
+     inset: 0;
+     z-index: 0;
+ }
+
+ /* hero inner */
+ .firstsection-content {
+     position: relative;
+     z-index: 2;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     padding: 0 40px;
+ }
+
+ .firstsection-title {
+     font-family: 'Raleway', sans-serif;
+     font-size: clamp(3rem, 6.5vw, 6.5rem);
+     font-weight: 200;
+     color: #2b2b2b;
+     letter-spacing: -0.01em;
+     line-height: 1.05;
+     margin-bottom: 24px;
+     white-space: nowrap;
+ }
+
+ .firstsection-sub {
+     font-family: 'Lato', sans-serif;
+     font-size: 1rem;
+     font-weight: 300;
+     color: #666;
+     letter-spacing: 0.02em;
+     line-height: 1.7;
+     max-width: 820px;
+     margin: 0 auto 44px;
+ }
+
+ .firstsection-btn {
+     display: inline-block;
+     background: #8cc152;
+     color: #fff;
+     font-family: 'Lato', sans-serif;
+     font-size: 0.85rem;
+     font-weight: 400;
+     letter-spacing: 0.06em;
+     padding: 16px 64px;
+     border-radius: 40px;
+     transition: background 0.25s;
+ }
+
+ .firstsection-btn:hover {
+     background: #79ad3f;
+ }
+
+ .secondsection {
+     position: absolute;
+     top: 100vh;
+     left: 0;
+     right: 0;
+     z-index: 2;
+     min-height: 100vh;
+
+     background: #ffffff;
+     box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.12);
+
+     padding: 100px 40px 60px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     text-align: center;
+ }
+
+ .secondsection-icon {
+     width: 120px;
+     height: 100px;
+     object-fit: contain;
+     margin-bottom: 36px;
+ }
+
+ .section2-title {
+     color: #2b2b2b;
+     margin-bottom: 20px;
+
+     color: #222222;
+     font-family: 'Josefin Sans', sans-serif;
+     font-size: 55px;
+     line-height: 94px;
+     font-style: normal;
+     font-weight: 400;
+     letter-spacing: 0px;
+     text-transform: none;
+
+ }
+
+ .secondsection-sub {
+     max-width: 700px;
+     margin: 0 auto;
+     color: #222222;
+     font-family: 'Open Sans', sans-serif;
+     font-size: 22px;
+     line-height: 32px;
+     font-style: normal;
+     font-weight: 300;
+     letter-spacing: 0px;
+     text-transform: none;
+     margin-bottom: 30px;
+
+ }
+
+ .sec2-columns {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 40px;
+     width: 100%;
+     max-width: 1100px;
+     margin-top: 10px;
+     margin-bottom: 80px;
+ }
+
+ .sec2-col {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     text-align: center;
+ }
+
+ .sec2-col-img {
+     width: 100%;
+     height: 300px;
+     overflow: hidden;
+     margin-bottom: 36px;
+     margin-top: 30px;
+ }
+
+ .sec-col-img img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     transition: transform 0.5s ease;
+ }
+
+ .sec2-col-title {
+     font-family: 'Josefin Sans', sans-serif;
+     font-size: 1.6rem;
+     font-weight: 400;
+     color: #222;
+     margin-bottom: 18px;
+     letter-spacing: 0.01em;
+ }
+
+ .sec2-col-text {
+     font-family: 'Open Sans', sans-serif;
+     font-size: 0.95rem;
+     font-weight: 300;
+     color: #777;
+     line-height: 1.8;
+     max-width: 500px;
+ }
+
+ .blog-head {
+     width: 100%;
+     background: #ffffff;
+     padding: 80px 40px 60px;
+     text-align: center;
+
+
+ }
+
+ .blog-title {
+     font-family: 'Josefin Sans', sans-serif;
+     font-size: 2.6rem;
+     font-weight: 400;
+     color: #222;
+     margin-bottom: 20px;
+     letter-spacing: 0.01em;
+ }
+
+ .blog-sub {
+     font-family: 'Open Sans', sans-serif;
+     font-size: 1rem;
+     font-weight: 300;
+     color: #888;
+     line-height: 1.7;
+     max-width: 600px;
+     margin: 0 auto;
+ }
+
+ .blog-cards-wrap {
+     width: 100%;
+     padding: 60px 40px 70px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+
+ .blog-grid {
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr;
+     gap: 30px;
+     width: 100%;
+     max-width: 1100px;
+     margin-bottom: 50px;
+ }
+
+ .blog-card {
+     background: #ffffff;
+     border: 1px solid #e8e8e8;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+ }
+
+ .blog-card-body {
+     padding: 36px 32px 24px;
+     flex: 1;
+     text-align: left;
+ }
+
+ .blog-card-title {
+     font-family: 'Josefin Sans', sans-serif;
+     font-size: 1.25rem;
+     font-weight: 400;
+     color: #222;
+     margin-bottom: 22px;
+     line-height: 1.4;
+     letter-spacing: 0.01em;
+ }
+
+ .blog-card-text {
+     font-family: 'Open Sans', sans-serif;
+     font-size: 0.9rem;
+     font-weight: 300;
+     color: #888;
+     line-height: 1.8;
+ }
+
+ .blog-card-author {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     padding: 30px 32px;
+     border-top: 1px solid #f0f0f0;
+     background: #fff;
+ }
+
+ .author-avatar {
+     width: 36px;
+     height: 36px;
+     border-radius: 50%;
+     overflow: hidden;
+     flex-shrink: 0;
+     background: #ddd;
+ }
+
+ .author-avatar img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+
+ .author-name {
+     font-family: 'Open Sans', sans-serif;
+     font-size: 0.82rem;
+     font-weight: 400;
+     color: #555;
+     flex: 1;
+ }
+
+ .author-date {
+     font-family: 'Open Sans', sans-serif;
+     font-size: 0.78rem;
+     font-weight: 300;
+     color: #aaa;
+     white-space: nowrap;
+ }
+
+ .blog-btn-wrap {
+     text-align: center;
+ }
+
+ .blog-btn {
+     display: inline-block;
+     background: #8cc152;
+     color: #fff;
+     font-family: 'Lato', sans-serif;
+     font-size: 0.85rem;
+     font-weight: 400;
+     letter-spacing: 0.06em;
+     padding: 16px 64px;
+     border-radius: 40px;
+     transition: background 0.25s, transform 0.2s;
+ }
+
+ .blog-btn:hover {
+     background: #79ad3f;
+     transform: translateY(-2px);
+ }
+
+ .products-section {
+     width: 100%;
+     background: #ffffff;
+     padding: 80px 40px 80px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     text-align: center;
+ }
+
+ .products-header {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin-bottom: 60px;
+ }
+
+ .products-icon {
+     width: 100px;
+     height: 90px;
+     object-fit: contain;
+     margin-bottom: 28px;
+
+ }
+
+ .products-title {
+     font-family: 'Josefin Sans', sans-serif;
+     font-size: 2.6rem;
+     font-weight: 400;
+     color: #222;
+     margin-bottom: 18px;
+     letter-spacing: 0.01em;
+ }
+
+ .products-sub {
+     font-family: 'Open Sans', sans-serif;
+     font-size: 1rem;
+     font-weight: 300;
+     color: #888;
+     line-height: 1.7;
+     max-width: 600px;
+ }
+
+ .products-grid {
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr 1fr;
+     gap: 28px;
+     width: 100%;
+     max-width: 1100px;
+ }
+
+
+ .product-col {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     text-align: left;
+ }
+
+ .product-col-img {
+     width: 100%;
+     height: 240px;
+     overflow: hidden;
+     margin-bottom: 24px;
+     background: #f5f5f5;
+ }
+
+ .product-col-img img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     transition: transform 0.5s ease;
+ }
+
+
+ .product-col:hover .product-col-img img {
+     transform: scale(1.04);
+ }
+
+
+ .product-col-title {
+     font-family: 'Josefin Sans', sans-serif;
+     font-size: 1.15rem;
+     font-weight: 400;
+     color: #222;
+     margin-bottom: 14px;
+     letter-spacing: 0.01em;
+ }
+
+ .product-col-text {
+     font-family: 'Open Sans', sans-serif;
+     font-size: 0.88rem;
+     font-weight: 300;
+     color: #888;
+     line-height: 1.75;
+ }
+
+
+ .facts-section {
+     width: 100%;
+     height: 100vh;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     background: #ffffff;
+ }
+
+ .facts-img {
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
+     background: #f5f5f5;
+ }
+
+ .facts-img img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     object-position: center;
+ }
+
+ .facts-content {
+     padding: 60px 80px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     background: #ffffff;
+ }
+
+
+ .facts-title {
+     font-family: 'Josefin Sans', sans-serif;
+     font-size: 3rem;
+     font-weight: 400;
+     color: #222;
+     margin-bottom: 50px;
+     letter-spacing: 0.01em;
+ }
+
+ .fact-item {
+     margin-bottom: 32px;
+ }
+
+ .fact-label-row {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 10px;
+ }
+
+ .fact-label {
+     font-family: 'Josefin Sans', sans-serif;
+     font-size: 1.1rem;
+     font-weight: 400;
+     color: #333;
+     letter-spacing: 0.02em;
+ }
+
+ .fact-percent {
+     font-family: 'Open Sans', sans-serif;
+     font-size: 1rem;
+     font-weight: 300;
+     color: #555;
+ }
+
+ .fact-bar-bg {
+     width: 100%;
+     height: 9px;
+     background: #e8e8e8;
+     border-radius: 2px;
+     overflow: hidden;
+ }
+
+ .fact-bar-fill {
+     height: 100%;
+     background: #8cc152;
+     border-radius: 2px;
+ }
+
+
+ .brands-section {
+     width: 100%;
+     height: 100vh;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     background: #ffffff;
+ }
+
+
+ .brands-content {
+     padding: 60px 80px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     background: #ffffff;
+ }
+
+
+ .brands-title {
+     font-family: 'Josefin Sans', sans-serif;
+     font-size: 3rem;
+     font-weight: 400;
+     color: #222;
+     margin-bottom: 50px;
+     letter-spacing: 0.01em;
+ }
+
+ .brands-grid {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     gap: 20px;
+     max-width: 440px;
+ }
+
+
+ .brand-item {
+     width: 100%;
+     aspect-ratio: 1;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     transition: opacity 0.2s;
+     cursor: pointer;
+ }
+
+
+ .brand-item:hover {
+     opacity: 0.85;
+ }
+
+ .brand-item svg {
+     width: 100%;
+     height: 100%;
+ }
+
+ .brands-img {
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
+     background: #f5f5f5;
+ }
+
+ .brands-img img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     object-position: center;
+ }
+
+
+ .contact-section {
+  width: 100%;
+  padding: 80px 80px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* header */
+.contact-header {
+  text-align: center;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+.contact-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 3rem;
+  font-weight: 400;
+  color: #222;
+  margin-bottom: 20px;
+  letter-spacing: 0.01em;
+}
+
+.contact-sub {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #888;
+  line-height: 1.7;
+}
+
+/* two column body */
+.contact-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* LEFT */
+.contact-left {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+.contact-phone {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #222;
+  letter-spacing: 0.01em;
+}
+
+.contact-text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #777;
+  line-height: 1.85;
+  text-align: left;
+}
+
+.contact-social-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #222;
+  margin-bottom: 16px;
+}
+
+/* social icons row */
+.contact-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact-social-icons a {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+
+.contact-social-icons a:hover { opacity: 0.5; }
+
+.contact-social-icons svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* RIGHT — form */
+.contact-right { width: 100%; }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* each input field */
+.form-field {
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 18px 4px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: #555;
+  resize: none;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #aaa;
+  font-weight: 300;
+}
+
+/* send button */
+.form-submit {
+  margin-top: 36px;
+  display: flex;
+  justify-content: left;
+}
+
+.send-btn {
+  display: inline-block;
+  background: #8cc152;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  padding: 18px 60px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+}
+.send-btn:hover {
+  background: #79ad3f;
+  transform: translateY(-2px);
+}
+
+
+
+.map-section {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  filter: grayscale(100%);
+  padding-left: 2px;padding-right: 2px;
+}
+
+.map-iframe {
+  width: 100vw;
+  height: 100vh;
+  border: none;
+  display: block;
+}
+.map-section:hover {
+  filter: grayscale(0%);
+  transition: filter 0.4s ease;
+}
+
+
+
+/* ================================================
+   CTA BAR
+   ================================================ */
+.cta-bar {
+  width: 100vw;
+  background: #f5f5f5;
+  padding: 28px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #eaeaea;
+  height: 200px;
+}
+
+.cta-text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #555;
+  letter-spacing: 0.01em;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: #8cc152;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  padding: 16px 52px;
+  border-radius: 40px;
+  transition: background 0.25s, transform 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.cta-btn:hover {
+  background: #79ad3f;
+  transform: translateY(-2px);
+}
+
+/* ================================================
+   FOOTER
+   ================================================ */
+.footer {
+  width: 100vw;
+  height: 300px;
+  background: #3d3d3d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -70px;
+}
+
+/* footer main — logo + social */
+.footer-main {
+  width: 100%;
+  padding: 70px 40px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+
+/* Bridge logo */
+.footer-logo {
+  font-family: 'Raleway', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 200;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+}
+
+/* social icons row */
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.footer-social a {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.footer-social a:hover { opacity: 1; }
+
+.footer-social svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* footer bottom — copyright */
+.footer-bottom {
+  width: 100%;
+  background: #333333;
+  padding: 20px 40px;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-bottom p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.02em;
+}
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <a href="#" class="nav-logo">Bridge</a>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#section2" class="active">About</a></li>
+      <li><a href="#food">News</a></li>
+      <li><a href="#organics">Story</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#location">Locations</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="#">f</a>
+      <a href="#">&#120163;</a>
+      <a href="#" class="pin">p</a>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+
+    <section class="firstsection" id="home">
+      <div class="firstsection-content">
+        <img class="hero-logo-icon" src="main-home-slider-logo-image-1.png" alt="Organic Icon">
+
+        <h1 class="firstsection-title">Seattle Organic Market</h1>
+        <p class="firstsection-sub">
+          We are passionate about providing you with a wide range of fresh,
+          healthy, certified organic whole foods.
+        </p>
+        <a href="#section2" class="firstsection-btn">Locations</a>
+      </div>
+    </section>
+
+    <section class="secondsection" id="section2">
+      <img class="secondsection-icon" src="./home-content-vector-image-1.png" alt="Organic basket">
+      <h2 class="section2-title">Eat clean and green</h2>
+      <p class="secondsection-sub">
+        Vitae turpis massa sed elementum tempus fet scelerisque varius morbi.
+      </p>
+
+      <div class="sec2-columns">
+        <div class="sec2-col">
+          <div class="sec2-col-img">
+            <img src="./main-home-image-1.jpg" alt="">
+            <img fetchpriority="high" decoding="async" width="800" height="401" src="https://bridge71.qodeinteractive.com/wp-content/uploads/2016/07/main-home-image-1.jpg" class="vc_single_image-img attachment-full" alt="g" title="main-home-image-1" srcset="https://bridge71.qodeinteractive.com/wp-content/uploads/2016/07/main-home-image-1.jpg 800w, https://bridge71.qodeinteractive.com/wp-content/uploads/2016/07/main-home-image-1-300x150.jpg 300w, https://bridge71.qodeinteractive.com/wp-content/uploads/2016/07/main-home-image-1-768x385.jpg 768w, https://bridge71.qodeinteractive.com/wp-content/uploads/2016/07/main-home-image-1-700x351.jpg 700w" sizes="(max-width: 800px) 100vw, 800px">
+            
+          <h3 class="sec2-col-title">About our shop</h3>
+
+          <p class="sec2-col-text">
+            Eu augue ut lectus arcu bibendum. Sollicitudin aliquam ultrices sagittis orci a. Sapien necis sagittis
+            aliquam malesuada bibendum arcu vitae elementum. Lectus arcu bibendum atusis variusvel quis blandit.
+          </p>
+        </div>
+
+        <div class="sec2-col">
+          <div class="sec2-col-img">
+            <img src="./main-home-image-2.jpg" alt="">
+            <img decoding="async" width="800" height="401" src="https://bridge71.qodeinteractive.com/wp-content/uploads/2016/07/main-home-image-2.jpg" class="vc_single_image-img attachment-full" alt="g" title="main-home-image-2" srcset="https://bridge71.qodeinteractive.com/wp-content/uploads/2016/07/main-home-image-2.jpg 800w, https://bridge71.qodeinteractive.com/wp-content/uploads/2016/07/main-home-image-2-300x150.jpg 300w, https://bridge71.qodeinteractive.com/wp-content/uploads/2016/07/main-home-image-2-768x385.jpg 768w, https://bridge71.qodeinteractive.com/wp-content/uploads/2016/07/main-home-image-2-700x351.jpg 700w" sizes="(max-width: 800px) 100vw, 800px">
+          </div>
+          </div>
+          <h3 class="sec2-col-title">What we do</h3>
+          <p class="sec2-col-text">
+            Eu augue ut lectus arcu bibendum. Sollicitudin aliquam ultrices sagittis orci a. Sapien necis sagittis
+            aliquam malesuada bibendum arcu vitae elementum. Lectus arcu bibendum atusis variusvel quis blandit.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+
+      <div class="blog-container" id="food">
+        <div class="blog-head">
+          <h2 class="blog-title">Our Health &amp; Food Blog</h2>
+          <p class="blog-sub">
+            Vitae turpis massa sed elementum tempus feugiat scelerisque varius morbi.
+          </p>
+        </div>
+
+
+        <div class="blog-cards-wrap">
+          <div class="blog-grid">
+
+            <!-- Card 1 -->
+            <div class="blog-card">
+              <div class="blog-card-body">
+                <h4 class="blog-card-title">Epic summer salad</h4>
+                <p class="blog-card-text">
+                  Tellus cras adipiscing enim eu turpis egestas. Pellentesque habitant morbi
+                  tristique senectus et netus. Duis at consectetur lorem donec massa.
+                  Malesuada fames ac turpis.
+                </p>
+              </div>
+              <div class="blog-card-author">
+                <div class="author-avatar">
+                  <img src="./author.jpeg" alt="Robert Altmany">
+                </div>
+                <span class="author-name">Robert Altmany</span>
+                <span class="author-date">12 July, 2016</span>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="blog-card">
+              <div class="blog-card-body">
+                <h4 class="blog-card-title">Garden to table</h4>
+                <p class="blog-card-text">
+                  Tellus cras adipiscing enim eu turpis egestas. Pellentesque habitant morbi
+                  tristique senectus et netus. Duis at consectetur lorem donec massa.
+                  Malesuada fames ac turpis.
+                </p>
+              </div>
+              <div class="blog-card-author">
+                <div class="author-avatar">
+                  <img src="./author.jpeg" alt="Robert Altmany">
+                </div>
+                <span class="author-name">Robert Altmany</span>
+                <span class="author-date">12 July, 2016</span>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="blog-card">
+              <div class="blog-card-body">
+                <h4 class="blog-card-title">Weekly meal plans</h4>
+                <p class="blog-card-text">
+                  Tellus cras adipiscing enim eu turpis egestas. Pellentesque habitant morbi
+                  tristique senectus et netus. Duis at consectetur lorem donec massa.
+                  Malesuada fames ac turpis.
+                </p>
+              </div>
+              <div class="blog-card-author">
+                <div class="author-avatar">
+                  <img src="./author.jpeg" alt="Robert Altmany">
+                </div>
+                <span class="author-name">Robert Altmany</span>
+                <span class="author-date">12 July, 2016</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="blog-btn-wrap">
+            <a href="#" class="blog-btn">Read blog posts</a>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+      <div class="product-section" id="organics">
+        <div class="products-header">
+          <img class="products-icon" src="./home-content-vector-image-1 (1).png" alt="">
+          <h2 class="products-title">All-organic products</h2>
+          <p class="products-sub">
+            Vitae turpis massa sed elementum tempus fet scelerisque varius morbi.
+          </p>
+        </div>
+
+        <div class="products-grid">
+          <!-- col1 -->
+          <div class="product-col">
+            <div class="product-col-img">
+              <img src="./main-home-image-4.jpg" alt="">
+            </div>
+            <h4 class="product-col-title">Best organic food</h4>
+            <p class="product-col-text">
+              Far etra diam sit amet nisl suscipit adipiscing. Aliquet nec ullamcorper
+              sit ameist. Tellus integer feugiat.
+            </p>
+
+          </div>
+          <!-- col2 -->
+
+          <div class="product-col">
+            <div class="product-col-img">
+              <img src="./main-home-image-5.jpg" alt="Feel the nature">
+            </div>
+            <h4 class="product-col-title">Feel the nature</h4>
+            <p class="product-col-text">
+              Far etra diam sit amet nisl suscipit adipiscing. Aliquet nec ullamcorper
+              sit ameist. Tellus integer feugiat.
+            </p>
+          </div>
+
+          <div class="product-col">
+            <div class="product-col-img">
+              <img src="./main-home-image-6.jpg" alt="Spices and herbs">
+            </div>
+            <h4 class="product-col-title">Spices and herbs</h4>
+            <p class="product-col-text">
+              Far etra diam sit amet nisl suscipit adipiscing. Aliquet nec ullamcorper
+              sit ameist. Tellus integer feugiat.
+            </p>
+          </div>
+          <div class="product-col">
+            <div class="product-col-img">
+              <img src="./main-home-image-7.jpg" alt="Healthy and easy">
+            </div>
+            <h4 class="product-col-title">Healthy and easy</h4>
+            <p class="product-col-text">
+              Far etra diam sit amet nisl suscipit adipiscing. Aliquet nec ullamcorper
+              sit ameist. Tellus integer feugiat.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="facts-section" id="facts">
+        <div class="facts-img">
+          <img src="./main-home-holder-image-1.jpg" alt="Organic spices">
+        </div>
+        <div class="facts-content">
+          <h2 class="facts-title">Organic Facts</h2>
+
+          <div class="fact-item">
+            <div class="fact-label-row">
+              <span class="fact-label">Vitamins</span>
+              <span class="fact-percent">31%</span>
+            </div>
+            <div class="fact-bar-bg">
+              <div class="fact-bar-fill" style="width:31%"></div>
+            </div>
+          </div>
+
+          <div class="fact-item">
+            <div class="fact-label-row">
+              <span class="fact-label">Minerals</span>
+              <span class="fact-percent">52%</span>
+            </div>
+            <div class="fact-bar-bg">
+              <div class="fact-bar-fill" style="width:52%"></div>
+            </div>
+          </div>
+
+          <div class="fact-item">
+            <div class="fact-label-row">
+              <span class="fact-label">Proteins</span>
+              <span class="fact-percent">89%</span>
+            </div>
+            <div class="fact-bar-bg">
+              <div class="fact-bar-fill" style="width:89%"></div>
+            </div>
+          </div>
+
+          <div class="fact-item">
+            <div class="fact-label-row">
+              <span class="fact-label">Calories</span>
+              <span class="fact-percent">74%</span>
+            </div>
+            <div class="fact-bar-bg">
+              <div class="fact-bar-fill" style="width:74%"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="brands-section">
+
+        <div class="brands-content">
+          <h2 class="brands-title">Brands &amp; Clients</h2>
+
+          <div class="brands-grid">
+
+            <div class="brand-item">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" stroke="#ccc" stroke-width="2" fill="none" />
+                <polygon points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5" stroke="#ccc" stroke-width="1"
+                  fill="none" />
+                <text x="50" y="55" text-anchor="middle" font-family="sans-serif" font-size="14"
+                  fill="#ccc">VELIT</text>
+              </svg>
+            </div>
+
+            <div class="brand-item">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="#ccc" stroke-width="2"
+                  fill="none" />
+                <text x="50" y="55" text-anchor="middle" font-family="sans-serif" font-size="12"
+                  fill="#ccc">LABORE</text>
+              </svg>
+            </div>
+
+            <div class="brand-item">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="40" stroke="#ccc" stroke-width="1.5" fill="none" />
+                <circle cx="50" cy="50" r="32" stroke="#ccc" stroke-width="1" fill="none" />
+                <text x="50" y="48" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#ccc"
+                  font-weight="600">H</text>
+                <text x="50" y="62" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#ccc">BRAND</text>
+              </svg>
+            </div>
+
+            <div class="brand-item">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="50,5 90,25 95,70 50,95 5,70 10,25" stroke="#ccc" stroke-width="1.5" fill="none" />
+                <polygon points="50,12 83,29 88,67 50,88 12,67 17,29" stroke="#ccc" stroke-width="0.8" fill="none" />
+                <text x="50" y="46" text-anchor="middle" font-family="sans-serif" font-size="9"
+                  fill="#ccc">DIAMOND</text>
+                <text x="50" y="58" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#ccc">LUXURY
+                  PRODUCT</text>
+              </svg>
+            </div>
+
+            <div class="brand-item">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="44" r="36" stroke="#ccc" stroke-width="1.5" fill="none" />
+                <text x="50" y="42" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#ccc"
+                  font-weight="600">H</text>
+                <text x="50" y="56" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#ccc">BRAND</text>
+                <line x1="20" y1="68" x2="80" y2="68" stroke="#ccc" stroke-width="0.8" />
+                <text x="50" y="78" text-anchor="middle" font-family="sans-serif" font-size="6" fill="#ccc">EST.
+                  2010</text>
+              </svg>
+            </div>
+
+            <div class="brand-item">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="18" y="18" width="64" height="64" transform="rotate(45 50 50)" stroke="#ccc" stroke-width="1.5"
+                  fill="none" />
+                <rect x="24" y="24" width="52" height="52" transform="rotate(45 50 50)" stroke="#ccc" stroke-width="0.8"
+                  fill="none" />
+                <text x="50" y="46" text-anchor="middle" font-family="sans-serif" font-size="9"
+                  fill="#ccc">DIAMOND</text>
+                <text x="50" y="58" text-anchor="middle" font-family="sans-serif" font-size="7"
+                  fill="#ccc">NATURAL</text>
+              </svg>
+            </div>
+
+            <div class="brand-item">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" stroke="#ccc" stroke-width="1.5"
+                  fill="none" />
+                <polygon points="50,14 86,32 86,68 50,86 14,68 14,32" stroke="#ccc" stroke-width="0.8" fill="none" />
+                <text x="50" y="58" text-anchor="middle" font-family="sans-serif" font-size="13"
+                  fill="#ccc">VELIT</text>
+              </svg>
+            </div>
+
+            <div class="brand-item">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="22" y="22" width="56" height="56" transform="rotate(45 50 50)" stroke="#ccc" stroke-width="1.5"
+                  fill="none" />
+                <text x="50" y="55" text-anchor="middle" font-family="sans-serif" font-size="12"
+                  fill="#ccc">LABORE</text>
+              </svg>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="brands-img">
+          <img src="./main-home-image-9.jpg" alt="Spices bowl">
+        </div>
+
+      </div>
+
+
+
+
+       <!-- ================================================
+         CONTACT SECTION
+         ================================================ -->
+    <div class="contact-section" id="contact">
+    
+      <!-- Header — center -->
+      <div class="contact-header">
+        <h2 class="contact-title">Contact Our Store</h2>
+        <p class="contact-sub">
+          Vitae turpis massa sed elementum tempus fet scelerisque varius morbi.
+        </p>
+      </div>
+    
+      <!-- Two columns -->
+      <div class="contact-body">
+    
+        <!-- Left — phone + text + social -->
+        <div class="contact-left">
+    
+          <h3 class="contact-phone">Call our shop: 555 786</h3>
+    
+          <p class="contact-text">
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet
+            consectetur adipiscing elit duis tristique sollicitudin nibh. Urna molestie at
+            elementum eu facilisis sedodio morbi. Ut morbi tincidunt augue interdum velit
+            euismod in. Ac orci phasellus egestas tellus rutrum tellus pellente.
+          </p>
+    
+          <div class="contact-social-wrap">
+            <h4 class="contact-social-title">Social links:</h4>
+            <div class="contact-social-icons">
+              <a href="#" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="#333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" stroke="#333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="Pinterest">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83.19-.77 1.26-5.33 1.26-5.33s-.32-.64-.32-1.59c0-1.49.86-2.6 1.93-2.6.91 0 1.35.68 1.35 1.5 0 .91-.58 2.29-.88 3.56-.25 1.06.53 1.93 1.57 1.93 1.88 0 3.14-2.4 3.14-5.24 0-2.16-1.46-3.77-4.1-3.77-2.99 0-4.84 2.23-4.84 4.72 0 .86.25 1.46.64 1.93.18.21.2.29.14.53-.05.17-.15.59-.2.75-.06.24-.25.33-.46.24-1.32-.54-1.94-2-1.94-3.63 0-2.69 2.26-5.9 6.74-5.9 3.6 0 5.98 2.6 5.98 5.4 0 3.7-2.06 6.47-5.1 6.47-1.02 0-1.97-.55-2.3-1.18l-.63 2.46c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.97.45 5.52 0 10-4.48 10-10S17.52 2 12 2z" stroke="#333" stroke-width="1.5" fill="none"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="#333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="2" y="9" width="4" height="12" stroke="#333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="4" cy="4" r="2" stroke="#333" stroke-width="1.8"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="12" cy="12" r="4" stroke="#333" stroke-width="1.8"/>
+                  <circle cx="17.5" cy="6.5" r="1" fill="#333"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="Dribbble">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" stroke="#333" stroke-width="1.8"/>
+                  <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32" stroke="#333" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+    
+        </div>
+    
+        <!-- Right — contact form -->
+        <div class="contact-right">
+    
+          <div class="contact-form">
+    
+            <div class="form-field">
+              <input type="text" placeholder="Your full name">
+            </div>
+    
+            <div class="form-field">
+              <input type="email" placeholder="Your e-mail adress">
+            </div>
+    
+            <div class="form-field">
+              <textarea placeholder="Message" rows="6"></textarea>
+            </div>
+    
+            <div class="form-submit">
+              <button class="send-btn">Send message now</button>
+            </div>
+    
+          </div>
+    
+        </div>
+    
+      </div>
+    
+    </div>
+
+
+    <!-- map  -->
+
+    <div class="map-section" id="location">
+  <iframe
+    class="map-iframe"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2249.8!2d12.5833!3d55.6731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4652530b2a651a85%3A0x4dd7f4f9b8a1b3d0!2sChristiansborg%20Slotsplads%2C%20K%C3%B8benhavn!5e0!3m2!1sen!2sdk!4v1234567890"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+
+
+
+<!-- ================================================
+     CTA BAR
+     ================================================ -->
+<div class="cta-bar">
+  <p class="cta-text">Find organic market for daily meal plans and products.</p>
+  <a href="#" class="cta-btn">Locations</a>
+</div>
+
+
+<footer class="footer">
+
+  <div class="footer-main">
+
+    <h2 class="footer-logo">Bridge</h2>
+
+    <div class="footer-social">
+
+      <a href="#" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+            stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <a href="#" aria-label="Twitter">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+            stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <a href="#" aria-label="Pinterest">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83.19-.77 1.26-5.33 1.26-5.33s-.32-.64-.32-1.59c0-1.49.86-2.6 1.93-2.6.91 0 1.35.68 1.35 1.5 0 .91-.58 2.29-.88 3.56-.25 1.06.53 1.93 1.57 1.93 1.88 0 3.14-2.4 3.14-5.24 0-2.16-1.46-3.77-4.1-3.77-2.99 0-4.84 2.23-4.84 4.72 0 .86.25 1.46.64 1.93.18.21.2.29.14.53-.05.17-.15.59-.2.75-.06.24-.25.33-.46.24-1.32-.54-1.94-2-1.94-3.63 0-2.69 2.26-5.9 6.74-5.9 3.6 0 5.98 2.6 5.98 5.4 0 3.7-2.06 6.47-5.1 6.47-1.02 0-1.97-.55-2.3-1.18l-.63 2.46c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.97.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"
+            stroke="#fff" stroke-width="1.5" fill="none"/>
+        </svg>
+      </a>
+
+      <a href="#" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+            stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="2" y="9" width="4" height="12"
+            stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="4" cy="4" r="2" stroke="#fff" stroke-width="1.8"/>
+        </svg>
+      </a>
+
+      <a href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"
+            stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="12" r="4" stroke="#fff" stroke-width="1.8"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="#fff"/>
+        </svg>
+      </a>
+
+      <a href="#" aria-label="Dribbble">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="1.8"/>
+          <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"
+            stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- Footer bottom copyright -->
+  <div class="footer-bottom">
+    <p>© Copyright Qode Interactive. This demo is part of the Bridge theme.</p>
+  </div>
+
+</footer>
+
+
+
+    </section>
+
+  </div>
+
+</body>
+
+</html>

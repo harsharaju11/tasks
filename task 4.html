@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Astrid Daniels</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#e5e5e5;
+}
+
+.container{
+width:1100px;
+height:450px;
+display:flex;
+border-radius:6px;
+overflow:hidden;
+
+background:
+linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+
+background-size:cover;
+background-position:center;
+}
+
+.left{
+width:40%;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+color:white;
+}
+
+.profile{
+width:220px;
+height:220px;
+border-radius:50%;
+overflow:hidden;
+margin-bottom:30px;
+}
+
+.profile img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.social{
+display:flex;
+gap:35px;
+font-size:26px;
+}
+
+.social i{
+cursor:pointer;
+transition:.3s;
+}
+
+.social i:hover{
+transform:scale(1.2);
+}
+
+.right{
+width:60%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding-left:80px;
+color:white;
+}
+
+.right h1{
+font-size:38px;
+margin-bottom:6px;
+}
+
+.right p{
+letter-spacing:3px;
+font-size:14px;
+margin-bottom:35px;
+}
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+.menu button{
+width:320px;
+padding:14px;
+border:2px solid white;
+background:transparent;
+color:white;
+letter-spacing:2px;
+cursor:pointer;
+transition:.3s;
+}
+
+.menu button:hover{
+background:white;
+color:black;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="left">
+
+<div class="profile">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330">
+</div>
+
+<div class="social">
+<i class="fab fa-instagram"></i>
+<i class="fab fa-facebook-f"></i>
+<i class="fab fa-twitter"></i>
+</div>
+
+</div>
+
+<div class="right">
+
+<h1>Astrid Daniels</h1>
+<p>BEAUTY AND FASHION</p>
+
+<div class="menu">
+<button>ABOUT ME</button>
+<button>LOOKBOOK</button>
+<button>COLLABORATIONS</button>
+<button>WORK WITH ME</button>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

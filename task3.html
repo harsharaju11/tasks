@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PraRoz Web Design & Development Course</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: #0a0a2a; 
+            color: white;
+            background-image: url('placeholder_background_image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 85%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6600;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            padding-bottom: 100px; 
+        }
+
+        .text-section {
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin: 0 0 10px 0;
+            line-height: 1.1;
+        }
+
+        .orange-text {
+            color: #ff6600;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 20px 0;
+            opacity: 0.8;
+        }
+
+        .join-button {
+            background-color: #ff6600;
+            color: white;
+            padding: 10px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">PraRoz</div>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Service</a>
+                <a href="#">Design</a>
+                <a href="#">Contact</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <div class="text-section">
+                <h1>Web Design &<br><span class="orange-text">Development</span><br>Course</h1>
+                <p>Web Design is a specialisation of the design stream. They also use HTML, CSS, WYSIWYG editing software, mark up validators etc to create design elements.</p>
+                <a href="#" class="join-button">JOIN US</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

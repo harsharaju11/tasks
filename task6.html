@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Menu Cards</title>
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#d7a21c;
+}
+.cointaier{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    padding:60px;
+}
+.card{
+    background:#d9d9d9;
+    width:260px;
+    border-radius:20px;
+    overflow:hidden;
+    text-align:center;
+}
+.card-header{
+    padding:20px 10px;
+}
+.card-header h2{
+    margin:0;
+    font-size:28px;
+}
+.card-header p{
+    margin:5px 0 0;
+    font-size:12px;
+    font-style:italic;
+}
+.section{
+    border-top:4px solid #c6921a;
+    padding:15px 20px;
+    text-align:left;
+}
+.section h3{
+    text-align:center;
+    margin:10px 0;
+}
+.menu-item{
+    display:flex;
+    justify-content:space-between;
+    margin:6px 0;
+    font-size:14px;
+}
+.order{
+    border-top:4px solid #c6921a;
+    padding:15px;
+}
+.order a{
+    text-decoration:underline;
+    color:black;
+    font-size:14px;
+}
+.icon{
+    font-size:30px;
+    text-align:center; 
+}
+</style>
+</head>
+<body>
+<div class="cointaier">
+<div class="card">
+    <div class="card-header">
+        <h2>Pastries</h2>
+        <p>Life is short, eat dessert first!</p>
+    </div>
+    <div class="section">
+        <div class="icon">🥖</div>
+        <h3>Bread</h3>
+        <div class="menu-item"><span>BAGUETTE</span><span>120.00</span></div>
+        <div class="menu-item"><span>BAGEL</span><span>120.00</span></div>
+        <div class="menu-item"><span>ENGLISH MUFFIN</span><span>110.00</span></div>
+        <h3>Pie</h3>
+        <div class="menu-item"><span>PUMPKIN PIE</span><span>350.00</span></div>
+        <div class="menu-item"><span>BLUE BERRY PIE</span><span>405.00</span></div>
+        <div class="menu-item"><span>RASPBERRY PIE</span><span>360.00</span></div>
+    </div>
+    <div class="order">
+        <a href="#">Order Now!</a>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h2>Drinks</h2>
+        <p>Drinks from heaven!</p>
+    </div>
+    <div class="section">
+        <div class="icon">☕</div>
+        <h3>Hot</h3>
+        <div class="menu-item"><span>BARAKO</span><span>100.00</span></div>
+        <div class="menu-item"><span>ESPRESSO</span><span>100.00</span></div>
+        <div class="menu-item"><span>WHITE MOCHA</span><span>110.00</span></div>
+        <h3>Cold</h3>
+        <div class="menu-item"><span>FRAPPUCINO</span><span>100.00</span></div>
+        <div class="menu-item"><span>MATCHA</span><span>105.00</span></div>
+        <div class="menu-item"><span>ICED AMERICANO</span><span>100.00</span></div>
+    </div>
+    <div class="order">
+        <a href="#">Order Now!</a>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header"> <h2>Snacks</h2>
+        <p>Snacks and bites for delights</p>
+    </div>
+    <div class="section">
+        <div class="icon">🍟</div> <h3>FILIPINO</h3>
+        <div class="menu-item"><span>LUMPIANG SHANGHAI</span><span>200.00</span></div>
+        <div class="menu-item"><span>MANI</span><span>80.00</span></div>
+        <div class="menu-item"><span>TURON</span><span>110.00</span></div>
+        <h3>MEXICAN</h3>
+        <div class="menu-item"><span>NACHOS</span><span>100.00</span></div>
+        <div class="menu-item"><span>BURRITO</span><span>200.00</span></div>
+        <div class="menu-item"><span>TAMALES</span><span>95.00</span></div>
+    </div>
+    <div class="order">
+        <a href="#">Order Now!</a> </div>
+</div>
+</div>
+</body>
+</html>

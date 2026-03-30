@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Task List</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #f5d6c6, #e63946);
+    text-align: center;
+}
+
+h1 {
+    margin-top: 30px;
+    text-decoration: underline;
+    color: #1d3557;
+}
+
+.subtitle {
+    color: #b5173a;
+    margin-bottom: 40px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 300px;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background: transparent;
+}
+
+.card h3 {
+    text-decoration: underline;
+}
+
+.card h2 {
+    margin: 15px 0;
+}
+
+.card p {
+    font-size: 14px;
+    color: #333;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #d90429;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a6031d;
+}
+</style>
+</head>
+
+<body>
+
+<h1>TASK LIST'S</h1>
+
+<p class="subtitle">
+This website contains the successfully completed tasks of <b>LEVEL 2</b> 
+as a part of the Web-Development and Designing Internship at 
+<i>Oasis Infobyte.</i>
+</p>
+
+<div class="container">
+
+    <div class="card">
+        <h3>TASK-1</h3>
+        <h2>CALCULATOR</h2>
+        <p>
+        It takes a little skill to create a calculator with basic mathematical 
+        functionalities using CSS, HTML, and JavaScript.
+        </p>
+        <button>View Task</button>
+    </div>
+
+    <div class="card">
+        <h3>TASK-2</h3>
+        <h2>TRIBUTE PAGE</h2>
+        <p>
+        Create a page for someone you admire using HTML, CSS
+        </p>
+        <button>View Task</button>
+    </div>
+
+    <div class="card">
+        <h3>TASK-3</h3>
+        <h2>TO-DO WEBAPP</h2>
+        <p>
+        Develop a basic To-Do WebApp that enables a user to add daily tasks. 
+        It should show Completed and Incomplete Tasks.
+        </p>
+        <button>View Task</button>
+    </div>
+
+</div>
+
+</body>
+</html>
