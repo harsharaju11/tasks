@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Random Color Generator</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      transition: background-color 0.3s ease;
+    }
+
+    .card {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .colors {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .box {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .red { background-color: red; }
+    .blue { background-color: blue; }
+    .green { background-color: green; }
+    .orange { background-color: orange; }
+
+    p {
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Random Color Generator</h2>
+    <div class="colors">
+      <div class="box red" onclick="changeColor('red')"></div>
+      <div class="box blue" onclick="changeColor('blue')"></div>
+      <div class="box green" onclick="changeColor('green')"></div>
+      <div class="box orange" onclick="changeColor('orange')"></div>
+    </div>
+    <p>Click a box to change the background!</p>
+  </div>
+
+  <script>
+    function changeColor(color) {
+      document.body.style.backgroundColor = color;
+    }
+  </script>
+
+</body>
+</html>

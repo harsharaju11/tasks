@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slider</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #dcdde1;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0  rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 15px;
+    }
+
+    .slider {
+      position: relative;
+    }
+
+    .slider img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    .btn:hover {
+      background: rgba(0,0,0,0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Slider</h2>
+    <div class="slider">
+      <button class="btn prev" onclick="prevSlide()">❮</button>
+      <img id="slide" src="https://picsum.photos/id/1015/400/200" alt="slider image">
+      <button class="btn next" onclick="nextSlide()">❯</button>
+    </div>
+  </div>
+
+  <script>
+    const images = [
+      "https://picsum.photos/id/1015/400/200",
+      "https://picsum.photos/id/1016/400/200",
+      "https://picsum.photos/id/1018/400/200",
+      "https://picsum.photos/id/1020/400/200"
+    ];
+
+    let index = 0;
+
+    function showSlide() {
+      document.getElementById("slide").src = images[index];
+    }
+
+    function nextSlide() {
+      index = (index + 1) % images.length;
+      showSlide();
+    }
+
+    function prevSlide() {
+      index = (index - 1 + images.length) % images.length;
+      showSlide();
+    }
+  </script>
+
+</body>
+</html>
