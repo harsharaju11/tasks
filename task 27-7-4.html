@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dice Roller</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial;
+  transition: background 0.5s ease;
+}
+
+/* CARD */
+.container {
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* DICE */
+.dice {
+  font-size: 80px;
+  margin: 20px 0;
+}
+
+/* BUTTON */
+button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #555;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>🎲 Dice Roller</h2>
+  <div class="dice" id="dice">🎲</div>
+  <button onclick="rollDice()">Roll</button>
+</div>
+
+<script>
+
+function rollDice() {
+  let number = Math.floor(Math.random() * 6) + 1;
+
+  const diceFaces = ["1","2","3","4","5","6"];
+  document.getElementById("dice").textContent = diceFaces[number - 1];
+
+  // 6 background colors
+  const colors = [
+    "#FF6B6B", // 1
+    "#4ECDC4", // 2
+    "#FFD93D", // 3
+    "#6C5CE7", // 4
+    "#00B894", // 5
+    "#FDCB6E"  // 6
+  ];
+
+  document.body.style.background = colors[number - 1];
+}
+
+</script>
+
+</body>
+</html>
