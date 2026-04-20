@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: none;
+      padding: 20px;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    h1 {
+      transition: color 0.5s ease;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+    }
+
+    #timeDisplay {
+      font-size: 20px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    #counterValue {
+      font-size: 32px;
+      margin: 10px;
+    }
+    .dark {
+      background-color: #0f172a;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1 id="mainHeading">Hello world Welcome JS</h1>
+    <div>
+      <input type="text" id="headingInput" placeholder="Enter new heading">
+      <button onclick="setCustomHeading()">Set Heading</button>
+    </div>
+    <div>
+      <button onclick="changeBackground()">Change Background</button>
+    </div>
+    <div>
+      <button onclick="showTime()">Show Time</button>
+      <p id="timeDisplay"></p>
+    </div>
+    <div>
+      <h2>Counter</h2>
+      <p id="counterValue">0</p>
+      <button onclick="changeCounter(1)">Increase</button>
+      <button onclick="changeCounter(-1)">Decrease</button>
+    </div>
+    <div>
+      <button onclick="resetApp()">Reset</button>
+    </div>
+    <div>
+      <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    </div>
+  </div>
+
+  <script>
+    let counter = 0;
+
+ function setCustomHeading() {
+  const input = document.getElementById('headingInput').value;
+  const heading = document.getElementById('mainHeading');
+
+  if (input.trim()) {
+    const colors = ["orange", "blue", "red"];
+    heading.innerText = input;
+    heading.style.color = colors[Math.floor(Math.random() * colors.length)];
+  }
+}
+
+   function changeBackground() {
+  const colors = ["yellow", "pink", "green"];
+  document.body.style.backgroundColor =
+    colors[Math.floor(Math.random() * colors.length)];
+}
+   
+   function showTime() {
+  document.getElementById('timeDisplay').style.display = "";
+  document.getElementById('timeDisplay').innerText = new Date().toLocalTimeString();
+    }
+
+    function changeCounter(value) {
+      counter += value;
+
+      const counterEl = document.getElementById('counterValue');
+      counterEl.innerText = counter;
+
+      if (counter > 0) {
+        counterEl.style.color = "green";
+      } else if (counter < 0) {
+        counterEl.style.color = "red";
+      } else {
+        counterEl.style.color = "black";
+      }
+    }
+
+    function resetApp() {
+      document.body.style.backgroundColor = "";
+      document.getElementById('mainHeading').innerText = "JavaScript Playground";
+      document.getElementById('mainHeading').style.color = "black";
+
+      counter = 0;
+      const counterEl = document.getElementById('counterValue');
+      counterEl.innerText = "0";
+      counterEl.style.color = "black";
+
+      const timeEl = document.getElementById('timeDisplay');
+      timeEl.style.display = "none";
+      timeEl.innerText = "";
+
+      document.getElementById('headingInput').value = "";
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
+
+</body>
+</html>
