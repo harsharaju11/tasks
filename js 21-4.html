@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body { font-family: Arial; display:flex; }
+
+#left {
+  width:220px;
+  padding:10px;
+  border-right:1px solid #ccc;
+}
+
+#right {
+  flex:1;
+  padding:10px;
+}
+
+.card {
+  border:1px solid #ccc;
+  margin:10px 0;
+  padding:10px;
+}
+</style>
+</head>
+<body>
+
+<!-- LEFT SIDE -->
+<div id="left">
+
+<h4>Filter</h4>
+
+Dept:
+<select id="dept">
+  <option value="">All</option>
+  <option>Computer</option>
+  <option>Electronics</option>
+  <option>Bio Tech</option>
+  <option>Bio Med</option>
+  <option>Pharm</option>
+</select>
+
+<br><br>
+
+Sort:
+<select id="sort">
+  <option value="">None</option>
+  <option value="low">Low → High</option>
+  <option value="high">High → Low</option>
+</select>
+
+<br><br>
+
+<label>
+  <input type="checkbox" id="avail"> Available Only
+</label>
+
+<hr>
+
+<h4>Add Course</h4>
+
+<input id="title" placeholder="Course Name"><br><br>
+<input id="faculty" placeholder="Faculty Name"><br><br>
+<input id="seats" type="number" placeholder="Seats"><br><br>
+<select id="newdept">
+  <option>Computer</option>
+  <option>Electronics</option>
+  <option>Bio Tech</option>
+  <option>Bio Med</option>
+  <option>Pharm</option>
+</select><br><br>
+
+<button onclick="add()">Add Course</button>
+
+</div>
+
+<!-- RIGHT SIDE -->
+<div id="right">
+<h3>Courses</h3>
+<div id="list"></div>
+</div>
+
+<script>
+let courses = [
+ {id:1,title:"AI Basics",dept:"Computer",faculty:"Dr A",seats:3},
+ {id:2,title:"Circuit Design",dept:"Electronics",faculty:"Dr B",seats:0},
+ {id:3,title:"Pharma Chem",dept:"Pharm",faculty:"Dr C",seats:5}
+];
+
+function show(){
+ let d = dept.value;
+ let s = sort.value;
+ let a = avail.checked;
+
+ let arr = [...courses];
+
+ if(d) arr = arr.filter(c=>c.dept==d);
+ if(a) arr = arr.filter(c=>c.seats>0);
+
+ if(s=="low") arr.sort((a,b)=>a.seats-b.seats);
+ if(s=="high") arr.sort((a,b)=>b.seats-a.seats);
+
+ list.innerHTML="";
+
+ arr.forEach(c=>{
+   list.innerHTML+=`
+     <div class="card">
+       <b>${c.title}</b><br>
+       Dept: ${c.dept}<br>
+       Faculty: ${c.faculty}<br>
+       Seats: ${c.seats==0?'Full':c.seats}<br>
+       <button onclick="enroll(${c.id})" ${c.seats==0?'disabled':''}>
+         Enroll
+       </button>
+     </div>
+   `;
+ });
+}
+
+function enroll(id){
+ let c = courses.find(x=>x.id==id);
+ if(c.seats>0) c.seats--;
+ show();
+}
+
+function add(){
+ courses.push({
+   id:Date.now(),
+   title:title.value,
+   faculty:faculty.value,
+   seats:+seats.value,
+   dept:newdept.value
+ });
+
+ show();
+}
+
+dept.onchange=show;
+sort.onchange=show;
+avail.onchange=show;
+
+show();
+</script>
+
+</body>
+</html>
