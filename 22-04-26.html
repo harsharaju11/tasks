@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Typing Speed Test</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #111827;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Card */
+.card {
+    width: 400px;
+    padding: 25px;
+    background: #1f2937;
+    border-radius: 12px;
+    box-shadow: 0 0 25px #a855f7;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-bottom: 2px solid #a855f7;
+    background: transparent;
+    color: #fff;
+}
+
+/* Text Display */
+#text span.correct { color: #22c55e; }
+#text span.wrong { color: #ef4444; }
+
+/* Typing box */
+textarea {
+    width: 100%;
+    height: 90px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+/* Stats */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* Button */
+button {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    background: #a855f7;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover { background: #9333ea; }
+
+/* Hidden */
+.hidden { display: none; }
+
+/* Popup */
+#popup {
+    position: fixed;
+    top: 20px;
+    background: black;
+    padding: 10px 20px;
+    display: none;
+}
+</style>
+</head>
+<body>
+
+<div class="card" id="form">
+    <h2>Typing Test</h2>
+    <input id="name" placeholder="Name">
+    <input id="email" placeholder="Email">
+    <button onclick="start()">Start Test</button>
+</div>
+
+<div class="card hidden" id="test">
+    <h2>Typing Test</h2>
+
+    <p id="text"></p>
+
+    <textarea id="input" placeholder="Start typing..."></textarea>
+
+    <div class="stats">
+        <span>Time: <b id="time">60</b></span>
+        <span>Mistakes: <b id="mistakes">0</b></span>
+        <span>WPM: <b id="wpm">0</b></span>
+    </div>
+
+    <button onclick="finish()">Finish</button>
+</div>
+
+<div id="popup"></div>
+
+<script>
+const sentence = "Typing fast requires practice and focus";
+let time = 60, timer, mistakes = 0, startTime;
+
+/* Show text with spans */
+function loadText() {
+    const textDiv = document.getElementById("text");
+    textDiv.innerHTML = "";
+    sentence.split("").forEach(ch => {
+        let span = document.createElement("span");
+        span.innerText = ch;
+        textDiv.appendChild(span);
+    });
+}
+
+/* Popup */
+function show(msg, color="black") {
+    let p = document.getElementById("popup");
+    p.style.background = color;
+    p.innerText = msg;
+    p.style.display = "block";
+    setTimeout(()=>p.style.display="none",3000);
+}
+
+/* Start */
+function start() {
+    let email = document.getElementById("email").value;
+
+    if (!email.includes("@")) {
+        show("Invalid Email!", "red");
+        return;
+    }
+
+    document.getElementById("form").classList.add("hidden");
+    document.getElementById("test").classList.remove("hidden");
+
+    loadText();
+
+    startTime = new Date().getTime();
+
+    timer = setInterval(()=>{
+        time--;
+        document.getElementById("time").innerText = time;
+        if (time === 0) finish();
+    },1000);
+}
+
+/* Typing event */
+document.getElementById("input").addEventListener("input", function() {
+    let input = this.value;
+    let spans = document.querySelectorAll("#text span");
+
+    mistakes = 0;
+
+    spans.forEach((span, i) => {
+        let char = input[i];
+
+        if (char == null) {
+            span.classList.remove("correct","wrong");
+        } 
+        else if (char === span.innerText) {
+            span.classList.add("correct");
+            span.classList.remove("wrong");
+        } 
+        else {
+            span.classList.add("wrong");
+            span.classList.remove("correct");
+            mistakes++;
+        }
+    });
+
+    document.getElementById("mistakes").innerText = mistakes;
+
+    // WPM live
+    let words = input.trim().split(/\s+/).length;
+    let elapsed = (60 - time) || 1;
+    let wpm = Math.round((words / elapsed) * 60);
+    document.getElementById("wpm").innerText = wpm;
+});
+
+/* Finish */
+function finish() {
+    clearInterval(timer);
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+
+    let wpm = document.getElementById("wpm").innerText;
+
+    // Save
+    let data = JSON.parse(localStorage.getItem("typing")||"[]");
+    data.push({name,email,wpm,mistakes});
+    localStorage.setItem("typing", JSON.stringify(data));
+
+    if (mistakes > 0) {
+        show(`You made ${mistakes} mistakes`, "orange");
+    }
+
+    show(`Congrats ${name}! Result sent to ${email}`, "green");
+}
+</script>
+
+</body>
+</html>
