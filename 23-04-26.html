@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Programming Concepts</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
+
+/* Navbar */
+nav {
+  background: #1e3a8a;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+nav button {
+  background: #3b82f6;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+nav button:hover {
+  background: #2563eb;
+}
+
+/* Content */
+.container {
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: #1e3a8a;
+}
+
+pre {
+  background: #f1f5f9;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <button onclick="loadPage('overview')">Overview</button>
+  <button onclick="loadPage('variables')">Variables</button>
+  <button onclick="loadPage('datatypes')">Data Types</button>
+  <button onclick="loadPage('conversion')">Conversion</button>
+</nav>
+
+<!-- CONTENT -->
+<div class="container" id="content"></div>
+
+<script>
+
+const pages = {
+
+overview: `
+<div class="card">
+<h2>📚 Overall Topics Covered Today</h2>
+
+<p><b>Variables (Store Data):</b><br>
+Variables are used to store data. They act like containers where we keep values and reuse them in programs.</p>
+
+<p><b>Data Types (Type of Data):</b><br>
+A data type defines what kind of value a variable holds such as number, text, or boolean.</p>
+
+<p><b>Primitive Types:</b><br>
+Basic data types that store single values.</p>
+<ul>
+<li>Number</li>
+<li>String</li>
+<li>Boolean</li>
+<li>Null</li>
+<li>Undefined</li>
+</ul>
+
+<p><b>Non-Primitive Types:</b><br>
+Complex data types used to store collections of data.</p>
+<ul>
+<li>Objects</li>
+<li>Arrays</li>
+<li>Functions</li>
+</ul>
+
+<p><b>Type Checking & Conversion:</b><br>
+We use <b>typeof</b> to check data type and functions like <b>Number()</b> and <b>String()</b> to convert types.</p>
+
+</div>
+`,
+
+variables: `
+<div class="card">
+<h2>Variables</h2>
+
+<p>A variable is used to store data. It is like a container where we keep values.</p>
+
+<p><b>Example:</b></p>
+<pre>
+let name = "Ravi";
+let age = 20;
+</pre>
+
+<h3>Topics under Variables</h3>
+
+<ul>
+<li><b>Declaration:</b> var, let, const</li>
+<li><b>Naming Rules:</b> No spaces, cannot start with number</li>
+<li><b>Scope:</b> Where variables can be used</li>
+<li><b>Reassignment:</b> Changing values</li>
+</ul>
+
+<h3>Example</h3>
+<pre>
+let marks = 80;
+marks = 90; // reassignment
+</pre>
+
+</div>
+`,
+
+datatypes: `
+<div class="card">
+<h2>Data Types</h2>
+
+<p>A data type tells what kind of data a variable is storing.</p>
+
+<h3>1. Primitive Data Types</h3>
+<pre>
+let num = 100;        // Number
+let text = "Hello";   // String
+let isPass = true;    // Boolean
+let x = null;         // Null
+let y;                // Undefined
+</pre>
+
+<h3>2. Non-Primitive Data Types</h3>
+<pre>
+// Object
+let student = {
+  name: "Ravi",
+  age: 20
+};
+
+// Array
+let colors = ["red", "blue"];
+
+// Function
+function greet() {
+  return "Hello";
+}
+</pre>
+
+</div>
+`,
+
+conversion: `
+<div class="card">
+<h2>Type Checking & Conversion</h2>
+
+<p>Type checking is used to identify data type using <b>typeof</b>.</p>
+
+<p><b>Example:</b></p>
+<pre>
+let value = "123";
+
+console.log(typeof value); // string
+</pre>
+
+<p>Type conversion changes one type to another.</p>
+
+<pre>
+let num = Number(value);  // string → number
+let str = String(100);    // number → string
+</pre>
+
+</div>
+`
+
+};
+
+function loadPage(page) {
+  document.getElementById("content").innerHTML = pages[page];
+}
+
+// default page
+loadPage('overview');
+
+</script>
+
+</body>
+</html>
