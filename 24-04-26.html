@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Real-Time Calculator</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .calculator {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        width: 300px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    .result {
+        font-size: 20px;
+        padding: 10px;
+        background: #f1f3f6;
+        border-radius: 6px;
+        min-height: 30px;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 18px;
+        border: none;
+        border-radius: 6px;
+        background: #667eea;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #5a67d8;
+    }
+
+    .clear {
+        background: #e53e3e;
+    }
+
+    .clear:hover {
+        background: #c53030;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+    <h2>Calculator</h2>
+
+    <input type="text" id="input" placeholder="Type expression..." oninput="calculate()">
+
+    <div class="result" id="result">Result: 0</div>
+
+    <div class="buttons">
+        <button onclick="add('7')">7</button>
+        <button onclick="add('8')">8</button>
+        <button onclick="add('9')">9</button>
+        <button onclick="add('/')">/</button>
+
+        <button onclick="add('4')">4</button>
+        <button onclick="add('5')">5</button>
+        <button onclick="add('6')">6</button>
+        <button onclick="add('*')">*</button>
+
+        <button onclick="add('1')">1</button>
+        <button onclick="add('2')">2</button>
+        <button onclick="add('3')">3</button>
+        <button onclick="add('-')">-</button>
+
+        <button onclick="add('0')">0</button>
+        <button onclick="add('.')">.</button>
+        <button onclick="add('+')">+</button>
+        <button class="clear" onclick="clearInput()">C</button>
+    </div>
+</div>
+
+<script>
+function add(value) {
+    const input = document.getElementById('input');
+    input.value += value;
+    calculate();
+}
+
+function clearInput() {
+    document.getElementById('input').value = '';
+    document.getElementById('result').innerText = 'Result: 0';
+}
+
+function calculate() {
+    const input = document.getElementById('input').value;
+
+    try {
+        if (input.trim() === '') {
+            document.getElementById('result').innerText = 'Result: 0';
+            return;
+        }
+
+        const result = eval(input);
+        document.getElementById('result').innerText = 'Result: ' + result;
+    } catch {
+        document.getElementById('result').innerText = 'Result: Invalid';
+    }
+}
+</script>
+
+</body>
+</html>
