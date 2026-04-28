@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weekly Planner - Kanban</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .input-box {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      width: 250px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .board {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .column {
+      background: #fff;
+      padding: 15px;
+      width: 250px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .column h3 {
+      text-align: center;
+    }
+
+    .task {
+      background: #e9f0ff;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .task button {
+      margin-top: 5px;
+      width: 100%;
+    }
+
+    .todo { border-top: 5px solid #ff4d4d; }
+    .progress { border-top: 5px solid #ffa500; }
+    .done { border-top: 5px solid #28a745; }
+
+  </style>
+</head>
+<body>
+
+<h2>Task Update</h2>
+
+<div class="input-box">
+  <input type="text" id="taskInput" placeholder="Enter task">
+  <button onclick="addTask()">Add Task</button>
+</div>
+
+<div class="board">
+  <div class="column todo">
+    <h3>To Do</h3>
+    <div id="todoList"></div>
+  </div>
+
+  <div class="column progress">
+    <h3>In Progress</h3>
+    <div id="progressList"></div>
+  </div>
+
+  <div class="column done">
+    <h3>Done</h3>
+    <div id="doneList"></div>
+  </div>
+</div>
+
+<script>
+  let tasks = [];
+
+  function addTask() {
+    const input = document.getElementById("taskInput");
+    const value = input.value.trim();
+
+    if (!value) return;
+
+    const task = {
+      id: Date.now(),
+      name: value,
+      status: "todo"
+    };
+
+    tasks.push(task);
+    input.value = "";
+    renderTasks();
+  }
+
+  function updateStatus(id, newStatus) {
+    tasks = tasks.map(task => {
+      if (task.id === id) {
+        return { ...task, status: newStatus };
+      }
+      return task;
+    });
+    renderTasks();
+  }
+
+  function renderTasks() {
+    const todo = document.getElementById("todoList");
+    const progress = document.getElementById("progressList");
+    const done = document.getElementById("doneList");
+
+    todo.innerHTML = "";
+    progress.innerHTML = "";
+    done.innerHTML = "";
+
+    tasks.forEach(task => {
+      const div = document.createElement("div");
+      div.className = "task";
+      div.innerHTML = `
+        <p>${task.name}</p>
+        ${
+          task.status === "todo"
+            ? `<button onclick="updateStatus(${task.id}, 'progress')">Start</button>`
+            : task.status === "progress"
+            ? `<button onclick="updateStatus(${task.id}, 'done')">Complete</button>`
+            : `<button onclick="updateStatus(${task.id}, 'todo')">Restart</button>`
+        }
+      `;
+
+      if (task.status === "todo") todo.appendChild(div);
+      if (task.status === "progress") progress.appendChild(div);
+      if (task.status === "done") done.appendChild(div);
+    });
+  }
+</script>
+
+</body>
+</html>
