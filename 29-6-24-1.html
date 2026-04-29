@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Animated Time Greeting</title>
+
+<style>
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    color: white;
+    transition: background 1s ease;
+}
+
+/* different time backgrounds */
+.morning { background: linear-gradient(135deg, #f6d365, #fda085); }
+.afternoon { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.evening { background: linear-gradient(135deg, #ff9966, #ff5e62); }
+.night { background: linear-gradient(135deg, #141e30, #243b55); }
+
+.box {
+    text-align: center;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+}
+
+input[type="range"] {
+    width: 250px;
+    margin-top: 20px;
+}
+
+.time {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.greeting {
+    font-size: 32px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s ease;
+}
+
+.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* pulse animation */
+.pulse {
+    animation: pulse 0.8s ease;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+</style>
+
+</head>
+<body class="morning">
+
+<div class="box">
+    <div class="time" id="timeDisplay">Time: 12:00</div>
+
+    <div id="greeting" class="greeting">☀️ Good Afternoon</div>
+
+    <input type="range" min="0" max="23" value="12" id="timeSlider">
+</div>
+
+<script>
+const slider = document.getElementById("timeSlider");
+const greeting = document.getElementById("greeting");
+const timeDisplay = document.getElementById("timeDisplay");
+const body = document.body;
+
+slider.addEventListener("input", () => {
+    let hour = parseInt(slider.value);
+
+    // display time
+    timeDisplay.textContent = "Time: " + hour + ":00";
+
+    let text = "";
+    let theme = "";
+
+    if (hour >= 5 && hour <= 11) {
+        text = "🌅 Good Morning";
+        theme = "morning";
+    } else if (hour >= 12 && hour <= 16) {
+        text = "☀️ Good Afternoon";
+        theme = "afternoon";
+    } else if (hour >= 17 && hour <= 20) {
+        text = "🌇 Good Evening";
+        theme = "evening";
+    } else {
+        text = "🌙 Good Night";
+        theme = "night";
+    }
+
+    // update background
+    body.className = theme;
+
+    // animate text
+    greeting.textContent = text;
+    greeting.classList.remove("show", "pulse");
+    void greeting.offsetWidth;
+    greeting.classList.add("show", "pulse");
+});
+</script>
+
+</body>
+</html>

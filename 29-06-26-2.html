@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Discount Calculator</title>
+<style>
+    body {
+        background: #0f0f1a;
+        color: white;
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .card {
+        padding: 20px;
+        border-radius: 15px;
+        background: rgba(255,255,255,0.05);
+        text-align: center;
+    }
+
+    input {
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+
+    .btn {
+        margin: 5px;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        background: #222;
+        display: inline-block;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background: #6c63ff;
+        transform: scale(1.1);
+    }
+
+    .total {
+        margin-top: 20px;
+        font-size: 28px;
+        transition: transform 0.2s;
+    }
+
+    .pop {
+        transform: scale(1.2);
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <div>
+        <span class="btn" onclick="calc(0.1)">10%</span>
+        <span class="btn" onclick="calc(0.2)">20%</span>
+        <span class="btn" onclick="calc(0.3)">30%</span>
+    </div>
+
+    <div id="result" class="total">$0.00</div>
+</div>
+
+<script>
+function calc(discount) {
+    let amount = parseFloat(document.getElementById("amount").value) || 0;
+    let total = amount - (amount * discount);
+
+    let result = document.getElementById("result");
+    result.textContent = "$" + total.toFixed(2);
+
+    result.classList.add("pop");
+    setTimeout(() => result.classList.remove("pop"), 200);
+}
+</script>
+
+</body>
+</html>
