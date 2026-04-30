@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Location </title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+    }
+
+    button {
+      padding: 15px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      background: #ff7a18;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background: #ff5500;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    .loading {
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="locBtn">📍 Get My Location</button>
+
+  <div id="output"></div>
+
+  <script>
+    const btn = document.getElementById("locBtn");
+    const output = document.getElementById("output");
+
+    btn.addEventListener("click", () => {
+      if (navigator.geolocation) {
+        btn.classList.add("loading");
+        btn.innerText = "Detecting...";
+
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            output.innerHTML = `
+              Latitude: ${lat} <br>
+              Longitude: ${lon}
+            `;
+
+            // Open Google Maps
+            window.open(`https://www.google.com/maps?q=${lat},${lon}`, "_blank");
+
+            btn.classList.remove("loading");
+            btn.innerText = "📍 Get My Location";
+          },
+          (error) => {
+            output.innerText = "Location access denied!";
+            btn.classList.remove("loading");
+            btn.innerText = "Try Again";
+          }
+        );
+      } else {
+        output.innerText = "Geolocation not supported!";
+      }
+    });
+  </script>
+
+</body>
+</html>
