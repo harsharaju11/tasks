@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quiz </title>
+
+<style>
+body {
+    margin:0;
+    font-family: Arial;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    text-align:center;
+}
+
+.container {
+    margin:40px auto;
+    width:60%;
+    padding:20px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s;
+}
+
+.question {
+    animation: slide 0.5s ease;
+}
+
+@keyframes slide {
+    from {opacity:0; transform:translateX(40px);}
+    to {opacity:1; transform:translateX(0);}
+}
+
+.option {
+    padding:12px;
+    margin:10px;
+    border-radius:8px;
+    background:rgba(255,255,255,0.2);
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.option:hover {
+    background:rgba(255,255,255,0.4);
+}
+
+.selected {
+    background:#00ffcc !important;
+    color:black;
+    transform:scale(1.05);
+}
+
+button {
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:#00c6ff;
+    color:white;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover {
+    background:#0072ff;
+    transform:scale(1.1);
+}
+
+#progressBar {
+    width:100%;
+    background:#ccc;
+    border-radius:10px;
+}
+#progress {
+    height:10px;
+    width:0%;
+    background:lime;
+    border-radius:10px;
+}
+
+.popup {
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#28a745;
+    padding:10px;
+    border-radius:8px;
+    display:none;
+}
+
+#finalScreen {
+    display:none;
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    top:0;
+    left:0;
+    color:white;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>🔥 Quiz App</h2>
+
+<input id="username" placeholder="Enter your name">
+<button onclick="startQuiz()">Start</button>
+
+<div class="container" id="quizBox" style="display:none;">
+    <h3 id="welcome"></h3>
+
+    <div id="progressBar"><div id="progress"></div></div>
+
+    <div id="questionBox"></div>
+
+    <button onclick="nextQuestion()">Next</button>
+</div>
+
+<div class="popup" id="popup">✔ Answer Selected</div>
+
+<div id="finalScreen">
+    <h1>🎉 Congrats!</h1>
+    <p>You completed the quiz</p>
+    <button onclick="showResult()">View Result</button>
+</div>
+
+<h2 id="result"></h2>
+
+<script>
+let user="";
+let current=0;
+let score=0;
+let selectedAnswer=null;
+let quiz=[];
+
+const quizSets = [
+[
+{q:"Capital of India?",options:["Delhi","Mumbai","Chennai","Kolkata"],answer:"Delhi"},
+{q:"2+2?",options:["3","4","5","6"],answer:"4"},
+{q:"Sun rises in?",options:["East","West","North","South"],answer:"East"},
+{q:"5*5?",options:["10","20","25","30"],answer:"25"},
+{q:"Water formula?",options:["H2O","CO2","O2","NaCl"],answer:"H2O"},
+{q:"Color of sky?",options:["Blue","Green","Red","Yellow"],answer:"Blue"},
+{q:"Earth shape?",options:["Flat","Round","Square","Triangle"],answer:"Round"},
+{q:"1+9?",options:["8","9","10","11"],answer:"10"},
+{q:"Animal barks?",options:["Cat","Dog","Cow","Lion"],answer:"Dog"},
+{q:"Largest planet?",options:["Earth","Mars","Jupiter","Venus"],answer:"Jupiter"}
+],
+[
+{q:"Capital of USA?",options:["NY","LA","DC","Texas"],answer:"DC"},
+{q:"3+5?",options:["5","6","7","8"],answer:"8"},
+{q:"Moon is?",options:["Star","Planet","Satellite","Comet"],answer:"Satellite"},
+{q:"10/2?",options:["2","5","10","20"],answer:"5"},
+{q:"Gas we breathe?",options:["Oxygen","CO2","Nitrogen","Hydrogen"],answer:"Oxygen"},
+{q:"Fire is?",options:["Hot","Cold","Wet","Dry"],answer:"Hot"},
+{q:"Largest ocean?",options:["Indian","Atlantic","Pacific","Arctic"],answer:"Pacific"},
+{q:"7+3?",options:["9","10","11","12"],answer:"10"},
+{q:"Animal with trunk?",options:["Dog","Elephant","Tiger","Cat"],answer:"Elephant"},
+{q:"Fastest animal?",options:["Lion","Tiger","Cheetah","Dog"],answer:"Cheetah"}
+],
+[
+{q:"Capital of UK?",options:["London","Paris","Rome","Berlin"],answer:"London"},
+{q:"6+4?",options:["9","10","11","12"],answer:"10"},
+{q:"Sun is?",options:["Planet","Star","Moon"],answer:"Star"},
+{q:"8*2?",options:["12","14","16","18"],answer:"16"},
+{q:"Ice is?",options:["Hot","Cold","Warm","Dry"],answer:"Cold"},
+{q:"Largest continent?",options:["Asia","Africa","Europe","Australia"],answer:"Asia"},
+{q:"9-3?",options:["5","6","7","8"],answer:"6"},
+{q:"King of jungle?",options:["Tiger","Lion","Elephant","Bear"],answer:"Lion"},
+{q:"Bird flies high?",options:["Crow","Eagle","Hen","Duck"],answer:"Eagle"},
+{q:"Smallest number?",options:["1","0","-1","2"],answer:"-1"}
+]
+];
+
+function startQuiz(){
+    user=document.getElementById("username").value;
+    if(user===""){alert("Enter name");return;}
+
+    quiz = quizSets[Math.floor(Math.random()*quizSets.length)];
+
+    document.getElementById("quizBox").style.display="block";
+    document.getElementById("welcome").innerText="Welcome "+user;
+
+    loadQuestion();
+}
+
+function loadQuestion(){
+    let q=quiz[current];
+    let html=`<div class="question"><h3>${current+1}. ${q.q}</h3>`;
+
+    q.options.forEach(opt=>{
+        html+=`<div class="option" onclick="selectAnswer(this,'${opt}')">${opt}</div>`;
+    });
+
+    html+=`</div>`;
+    document.getElementById("questionBox").innerHTML=html;
+    selectedAnswer=null;
+    updateProgress();
+}
+
+function selectAnswer(el,ans){
+    selectedAnswer=ans;
+
+
+    document.querySelectorAll(".option").forEach(o=>o.classList.remove("selected"));
+
+    el.classList.add("selected");
+
+    let p=document.getElementById("popup");
+    p.style.display="block";
+    setTimeout(()=>p.style.display="none",800);
+}
+
+function nextQuestion(){
+    if(!selectedAnswer){
+        alert("Select answer");
+        return;
+    }
+
+    if(selectedAnswer===quiz[current].answer){
+        score++;
+    }
+
+    current++;
+
+    if(current<quiz.length){
+        loadQuestion();
+    } else {
+        finishQuiz();
+    }
+}
+
+function updateProgress(){
+    let percent=(current/quiz.length)*100;
+    document.getElementById("progress").style.width=percent+"%";
+}
+
+function finishQuiz(){
+    document.getElementById("quizBox").style.display="none";
+    document.getElementById("finalScreen").style.display="flex";
+}
+
+function showResult(){
+    document.getElementById("finalScreen").style.display="none";
+    document.getElementById("result").innerText=
+        user+" your score: "+score+"/"+quiz.length;
+}
+</script>
+
+</body>
+</html>
