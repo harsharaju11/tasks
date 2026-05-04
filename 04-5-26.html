@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cryptous UI Clone</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Poppins',sans-serif;
+  background:#14002b;
+  color:#fff;
+}
+
+/* NAV */
+.navbar{
+  display:flex;justify-content:space-between;
+  align-items:center;padding:20px 80px;
+}
+.navbar nav a{
+  margin:0 12px;color:#aaa;text-decoration:none;
+  font-size:14px;
+}
+.navbar nav a.active{color:#ff4d6d}
+.btn-outline{
+  border:1px solid #ff4d6d;
+  color:#ff4d6d;background:none;
+  padding:8px 18px;border-radius:20px;
+}
+
+/* HERO */
+.hero{
+  display:flex;justify-content:space-between;
+  align-items:center;
+  padding:90px 80px;
+}
+.hero h1{
+  font-size:48px;line-height:1.3;
+}
+.hero p{
+  color:#aaa;margin-top:15px;
+}
+.btn{
+  margin-top:25px;
+  background:#ff4d6d;
+  border:none;color:#fff;
+  padding:12px 28px;border-radius:25px;
+}
+.hero img{width:280px}
+
+/* TABLE */
+.section{padding:70px 80px}
+.section h2{text-align:center;margin-bottom:30px}
+
+.table{
+  background:#1f0040;
+  border-radius:12px;
+  overflow:hidden;
+}
+table{width:100%;border-collapse:collapse}
+th,td{
+  padding:16px;
+  font-size:14px;
+  text-align:left;
+}
+th{
+  background:#2a0055;color:#bbb;
+}
+tr{border-bottom:1px solid #333}
+.green{color:#00ffa6}
+.red{color:#ff4d4d}
+
+/* FEATURES */
+.features{
+  background:#eee;color:#000;
+  padding:80px;text-align:center;
+}
+.cards{
+  display:flex;justify-content:center;
+  gap:30px;margin-top:40px;
+}
+.card{
+  background:#fff;padding:25px;
+  border-radius:12px;width:260px;
+}
+
+/* DOWNLOAD */
+.download{
+  display:flex;justify-content:space-between;
+  align-items:center;
+  padding:90px 80px;
+}
+.download-text h2{font-size:32px}
+.download-text p{color:#aaa;margin-top:10px}
+.phone{
+  display:flex;gap:20px;
+}
+.phone img{
+  width:180px;
+  transform:rotate(-10deg);
+}
+.phone img:last-child{
+  transform:rotate(10deg);
+}
+
+/* BLOG */
+.blog{
+  background:#eee;color:#000;
+  padding:80px;
+  text-align:center;
+}
+.blog-cards{
+  display:flex;gap:25px;
+  justify-content:center;
+  margin-top:40px;
+}
+.blog-card{
+  background:#fff;
+  border-radius:12px;
+  width:300px;
+  overflow:hidden;
+  text-align:left;
+}
+.blog-card img{
+  width:100%;height:160px;
+  object-fit:cover;
+}
+.blog-card .content{
+  padding:15px;
+}
+.blog-card small{
+  color:#666;
+}
+
+/* SUBSCRIBE */
+.subscribe{
+  padding:80px;text-align:center;
+}
+.subscribe input{
+  padding:12px 15px;
+  width:280px;
+  border:none;border-radius:25px;
+}
+.subscribe button{
+  padding:12px 20px;
+  border:none;border-radius:25px;
+  background:#ff4d6d;color:#fff;
+}
+
+/* FOOTER */
+footer{
+  background:#100020;
+  padding:60px 80px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+footer div{
+  margin:10px;
+}
+footer h4{
+  margin-bottom:10px;
+}
+footer p{
+  color:#aaa;
+  font-size:14px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+.hero,.download{flex-direction:column;text-align:center}
+.cards,.blog-cards{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="navbar">
+  <h2>Cryptous</h2>
+  <nav>
+    <a>Home</a><a>Company</a><a>About</a>
+    <a>Pricing</a><a>Team</a><a>Contact</a>
+    <a class=>Blog</a>
+  </nav>
+  <button class="btn-outline">Trade Now</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>Make better business<br>with Cryptocurrency</h1>
+    <p>We offer users a fully operational long-term rental platform.<br>
+    It leverages blockchain technology.</p>
+    <button class="btn">Get Whitelisted</button>
+  </div>
+  <img src= "illu.png" >
+</section>
+
+<!-- TABLE -->
+<section class="section">
+<h2>Today's Cryptocurrency Prices</h2>
+<div class="table">
+<table>
+<tr>
+<th>#</th><th>Name</th><th>Price</th><th>24h%</th><th>7d%</th><th>Market Cap</th><th>Volume(24h)</th><th>Last 7 days</th>
+</tr>
+<tr><td>1</td><td>Bitcoin BTC</td><td>$60,206</td><td class="green">▲0.92%</td><td class="green">▲13.86%</td><td>$1T</td><td>$53B</td><td>📈</td></tr>
+<tr><td>2</td><td>Ethereum ETH</td><td>$3,006</td><td class="red">▼0.45%</td><td class="green">▲8.12%</td><td>$402B</td><td>$21B</td><td>📈</td></tr>
+<tr><td>3</td><td>Cardano ADA</td><td>$2.15</td><td class="red">▼1.12%</td><td class="red">▼4.86%</td><td>$68B</td><td>$3B</td><td>📉</td></tr>
+<tr><td>4</td><td>Tether USDT</td><td>$1.00</td><td class="green">▲0.01%</td><td class="green">▲0.05%</td><td>$80B</td><td>$32B</td><td>➖</td></tr>
+<tr><td>5</td><td>Avalanche AVAX</td><td>$35.20</td><td class="red">▼0.62%</td><td class="green">▲3.21%</td><td>$25B</td><td>$1.2B</td><td>📈</td></tr>
+<tr><td>6</td><td>Algorand ALGO</td><td>$1.02</td><td class="green">▲2.14%</td><td class="red">▼0.56%</td><td>$9B</td><td>$0.4B</td><td>📉</td></tr>
+</table>
+</div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+<h2>The most trusted cryptocurrency platform</h2>
+<div class="cards">
+<div class="card"><h3>Ease of Trading</h3><p>Intuitive interface<br>Instant deposits</p></div>
+<div class="card"><h3>Security</h3><p>98% assets stored safely offline</p></div>
+<div class="card"><h3>Proven Reliability</h3><p>Industry uptime & 24/7 support</p></div>
+</div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="download">
+<div class="download-text">
+<h2>Try the future, today.<br>Download Crypto</h2>
+<p>Stay connected with our mobile app with advanced tools.</p>
+</div>
+<div class="phone">
+<img src="phone.png">
+</div>
+</section>
+
+<!-- BLOG -->
+<section class="blog">
+<h2>Learn to thrive</h2>
+<div class="blog-cards">
+<div class="blog-card">
+<img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040">
+<div class="content">
+<h4>New Leverage Pairs Added</h4>
+<small>We urge everyone adopt good
+cybersecurity habits, and use unique
+passwords...
+By: Jennia Peris | 15/07/2021 |5 Min read.</small>
+</div>
+</div>
+
+<div class="blog-card">
+<img src="https://images.unsplash.com/photo-1640340434855-6084b1f4901c">
+<div class="content">
+<h4>Understanding Bitcoin</h4>
+<small>Learn how Bitcoin works and why it's
+reshaping the financial industry...
+By: John Smith | 12/07/2021 | 7 Min read</small>
+</div>
+</div>
+
+<div class="blog-card">
+<img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247">
+<div class="content">
+<h4>Future of Crypto</h4>
+<small>Experts discuss the potential of
+blockchain and cryptocurrency for
+global trade...
+By: Sarah Lee | 10/07/2021 | 6 Min read</small>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SUBSCRIBE -->
+<section class="subscribe">
+<h2>Never miss a drop</h2>
+<p>Subscribe for the latest news & updates</p><br>
+<input placeholder="Enter your email">
+<button>Subscribe</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div><h4>Company</h4><p>About</p><p>Terms</p><p>Privacy</p></div>
+<div><h4>Businesses</h4><p>Prime</p><p>Custody</p></div>
+<div><h4>Exchange</h4><p>Home</p><p>Trading</p></div>
+<div><h4>Blockchain</h4><p>Explorer</p><p>Security</p></div>
+<div><h4>Resources</h4><p>Prices</p><p>Tax</p><p>Blog</p></div>
+</footer>
+
+</body>
+</html>
