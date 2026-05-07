@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXA Commerce</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section id="roleView" class="auth-screen">
+    <div class="brand-block">
+      <span class="eyebrow">Mint commerce suite</span>
+      <h1>NEXA Commerce</h1>
+      <p>A full-stack-style local e-commerce experience with a polished storefront, persistent checkout, and Real-inspired admin control.</p>
+    </div>
+    <div class="role-grid">
+      <button class="role-card" type="button" data-role="user">
+        <span>User Login</span>
+        <strong>Shop, save carts, checkout, and track your orders.</strong>
+      </button>
+      <button class="role-card admin-card" type="button" data-role="admin">
+        <span>Admin Login</span>
+        <strong>Manage products, orders, statuses, refunds, and KPIs.</strong>
+      </button>
+    </div>
+  </section>
+
+  <section id="authView" class="auth-screen hidden">
+    <div class="auth-card">
+      <button id="backToRolesBtn" class="link-btn" type="button">Back</button>
+      <span id="authEyebrow" class="eyebrow">User access</span>
+      <h2 id="authTitle">Welcome to NEXA</h2>
+      <p id="authCopy">Create an account to receive a fresh 6-digit OTP, or sign in with your saved email and OTP.</p>
+
+      <div id="userAuthTabs" class="auth-tabs">
+        <button id="userLoginTab" class="active" type="button">Login</button>
+        <button id="userSignupTab" type="button">Signup</button>
+      </div>
+
+      <form id="authForm" class="form-stack">
+        <label id="nameField" class="field hidden">
+          <span>Name</span>
+          <input id="nameInput" type="text" placeholder="Your full name">
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input id="emailInput" type="email" placeholder="you@example.com" required>
+        </label>
+        <label id="credentialField" class="field">
+          <span id="credentialLabel">OTP</span>
+          <input id="credentialInput" type="text" placeholder="6-digit OTP" required>
+        </label>
+        <button id="authSubmitBtn" class="primary-btn" type="submit">Continue</button>
+      </form>
+      <div id="otpNotice" class="notice hidden"></div>
+    </div>
+  </section>
+
+  <section id="storeView" class="site-shell hidden">
+    <header class="site-header">
+      <button class="logo-btn" type="button" data-page="home">NEXA</button>
+      <nav class="store-nav">
+        <button type="button" data-page="home">Home</button>
+        <button type="button" data-page="shop">Shop</button>
+        <button type="button" data-page="arrivals">New Arrivals</button>
+        <button type="button" data-page="dashboard">Dashboard</button>
+        <button type="button" data-page="about">Blog/About</button>
+        <button type="button" data-page="contact">Contact</button>
+      </nav>
+      <div class="header-actions">
+        <button id="cartNavBtn" class="cart-button" type="button" data-page="cart">Cart <span id="cartCount">0</span></button>
+        <button id="storeLogoutBtn" class="ghost-btn" type="button">Logout</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="homePage" class="page">
+        <div class="hero-slider">
+          <div id="heroTrack" class="hero-track"></div>
+          <div id="heroDots" class="hero-dots"></div>
+        </div>
+
+        <section class="section-block">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Customer picks</span>
+              <h2>Best Sellers</h2>
+            </div>
+            <button class="ghost-btn" type="button" data-page="shop">View Shop</button>
+          </div>
+          <div id="bestSellerGrid" class="product-grid compact"></div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Fresh shelf</span>
+              <h2>New Arrivals</h2>
+            </div>
+            <button class="ghost-btn" type="button" data-page="arrivals">See All</button>
+          </div>
+          <div id="homeArrivalGrid" class="product-grid compact"></div>
+        </section>
+
+        <section class="info-band">
+          <article>
+            <strong>Fast Local Checkout</strong>
+            <span>Cart, coupons, COD fees, and payment states persist in the browser.</span>
+          </article>
+          <article>
+            <strong>Admin Connected</strong>
+            <span>Admin-added inventory appears immediately for customers.</span>
+          </article>
+          <article>
+            <strong>Mint Experience</strong>
+            <span>Responsive product browsing with category chips and polished pagination.</span>
+          </article>
+        </section>
+
+        <section class="section-block">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Reviews</span>
+              <h2>What Customers Say</h2>
+            </div>
+          </div>
+          <div id="reviewSlider" class="review-slider"></div>
+        </section>
+      </section>
+
+      <section id="shopPage" class="page hidden">
+        <div class="catalog-top">
+          <div>
+              <span class="eyebrow">NEXA catalog</span>
+            <h1>Shop Products</h1>
+          </div>
+          <div class="catalog-controls">
+            <input id="searchInput" type="search" placeholder="Search electronics or home">
+            <select id="sortSelect">
+              <option value="default">Featured</option>
+              <option value="low">Price: Low to High</option>
+              <option value="high">Price: High to Low</option>
+              <option value="discount">Best Discount</option>
+            </select>
+          </div>
+        </div>
+        <div id="categoryChips" class="chip-row"></div>
+        <div id="productGrid" class="product-grid"></div>
+        <div class="pagination">
+          <button id="prevPageBtn" type="button">Previous</button>
+          <span id="pageLabel">Page 1 of 1</span>
+          <button id="nextPageBtn" type="button">Next</button>
+        </div>
+      </section>
+
+      <section id="arrivalsPage" class="page hidden">
+        <div class="catalog-top">
+          <div>
+            <span class="eyebrow">Just landed</span>
+            <h1>New Arrivals</h1>
+            <p>Recently added products, including admin additions, appear here first.</p>
+          </div>
+        </div>
+        <div id="arrivalGrid" class="product-grid"></div>
+      </section>
+
+      <section id="dashboardPage" class="page hidden">
+        <div class="dashboard-layout">
+          <section class="panel">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow">User dashboard</span>
+                <h1>My Account</h1>
+              </div>
+            </div>
+            <form id="userProfileForm" class="user-form">
+              <label class="field">
+                <span>Full Name</span>
+                <input id="profileName" type="text" placeholder="Enter full name" required>
+              </label>
+              <label class="field">
+                <span>Email</span>
+                <input id="profileEmail" type="email" placeholder="you@example.com" readonly>
+              </label>
+              <label class="field">
+                <span>Phone Number</span>
+                <input id="profilePhone" type="tel" placeholder="+91 98765 43210">
+              </label>
+              <label class="field">
+                <span>City</span>
+                <input id="profileCity" type="text" placeholder="Hyderabad">
+              </label>
+              <label class="field wide">
+                <span>Default Delivery Address</span>
+                <textarea id="profileAddress" rows="3" placeholder="House no, street, city, pincode"></textarea>
+              </label>
+              <label class="field">
+                <span>Preferred Payment</span>
+                <select id="profilePayment">
+                  <option>UPI</option>
+                  <option>Card</option>
+                  <option>COD</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Support Preference</span>
+                <select id="profileSupport">
+                  <option>Email</option>
+                  <option>Phone</option>
+                  <option>WhatsApp</option>
+                </select>
+              </label>
+              <button class="primary-btn wide" type="submit">Save Profile</button>
+            </form>
+          </section>
+
+          <aside class="panel user-summary-panel">
+            <h2>Account Summary</h2>
+            <div id="userSummaryCards" class="mini-stat-grid"></div>
+            <h3>Recent Orders</h3>
+            <div id="userRecentOrders" class="recent-list"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="aboutPage" class="page hidden text-page">
+        <span class="eyebrow">NEXA journal</span>
+        <h1>About the Store Experience</h1>
+        <p>NEXA Commerce is a modern storefront built to feel like a real online shopping destination while staying fully local to your browser. The shop keeps products, users, carts, orders, statuses, refunds, and admin-added inventory in localStorage, so the experience survives a page refresh without a server.</p>
+        <p>The checkout flow is designed around clarity. Customers can review subtotal, delivery fee, platform fee, coupon savings, COD fee, and total before placing an order. UPI payments show a QR code, card payments collect card details, and cash on delivery adds a small handling charge.</p>
+        <p>The admin dashboard is connected directly to the customer store. When an admin adds a new product, it appears in the catalog and new arrivals. When an order status changes, the customer-facing order record is updated. Cancelled orders automatically create refund details with a refund ID, refund amount, and initiation time.</p>
+        <p>The goal is a smooth store experience: fast browsing, clean category chips, visible discounts, practical order management, and an operations dashboard that feels calm enough to use every day.</p>
+      </section>
+
+      <section id="contactPage" class="page hidden">
+        <div class="contact-grid">
+          <div>
+            <span class="eyebrow">Talk to us</span>
+            <h1>Contact NEXA</h1>
+            <p>For orders, returns, product help, or partnership questions, reach NEXA support through the channels below.</p>
+          </div>
+          <div class="contact-card">
+            <strong>Email</strong>
+            <span>support@nexa-commerce.local</span>
+            <strong>Phone</strong>
+            <span>+91 98765 43210</span>
+            <strong>Hours</strong>
+            <span>Monday to Saturday, 9:00 AM to 8:00 PM</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="cartPage" class="page hidden">
+        <div class="cart-layout">
+          <section class="panel">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow">Checkout</span>
+                <h1>Your Cart</h1>
+              </div>
+            </div>
+            <div id="cartItems" class="cart-list"></div>
+          </section>
+
+          <aside class="panel checkout-panel">
+            <h2>Order Summary</h2>
+            <label class="field">
+              <span>Coupon</span>
+              <div class="inline-control">
+                <input id="couponInput" type="text" placeholder="UPI10 or NEXA50">
+                <button id="applyCouponBtn" class="ghost-btn" type="button">Apply</button>
+              </div>
+            </label>
+            <label class="field">
+              <span>Delivery Address</span>
+              <textarea id="addressInput" rows="3" placeholder="House, street, city, pincode"></textarea>
+            </label>
+            <button id="liveLocationBtn" class="ghost-btn" type="button">Use Live Location</button>
+
+            <div class="payment-box">
+              <strong>Payment Method</strong>
+              <label><input type="radio" name="payment" value="UPI" checked> UPI</label>
+              <label><input type="radio" name="payment" value="Card"> Card</label>
+              <label><input type="radio" name="payment" value="COD"> Cash on Delivery</label>
+            </div>
+
+            <div id="upiBox" class="pay-extra">
+              <div class="qr-code">NEXA<br>UPI</div>
+              <span>Scan to pay with any UPI app.</span>
+            </div>
+            <div id="cardBox" class="pay-extra hidden">
+              <input id="cardName" placeholder="Card name">
+              <input id="cardNumber" placeholder="Card number">
+              <div class="two-col">
+                <input id="cardExpiry" placeholder="MM/YY">
+                <input id="cardCvc" placeholder="CVC">
+              </div>
+            </div>
+
+            <div id="summaryLines" class="summary-lines"></div>
+            <button id="placeOrderBtn" class="primary-btn" type="button">Place Order</button>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </section>
+
+  <section id="adminView" class="admin-shell hidden">
+    <aside class="admin-sidebar">
+      <strong>NEXA Admin</strong>
+      <span>Real-style dashboard</span>
+      <button type="button" data-admin-page="overview">Overview</button>
+      <button type="button" data-admin-page="addProduct">Add Product</button>
+      <button type="button" data-admin-page="inventory">Product Inventory</button>
+      <button type="button" data-admin-page="orders">Order Management</button>
+      <button id="adminLogoutBtn" class="ghost-btn" type="button">Logout</button>
+    </aside>
+    <main class="admin-main">
+      <section id="adminOverview" class="admin-page">
+        <div class="admin-head">
+          <div>
+            <span class="eyebrow">Operations</span>
+            <h1>Dashboard</h1>
+          </div>
+          <span id="adminClock"></span>
+        </div>
+        <div id="kpiGrid" class="kpi-grid"></div>
+        <div id="adminInsightGrid" class="admin-insight-grid"></div>
+        <div class="admin-overview-grid">
+          <section class="panel">
+            <div class="table-heading">
+              <h2>Recent Orders</h2>
+              <span id="recentOrderCount">0 orders</span>
+            </div>
+            <div id="adminRecentOrders" class="recent-list"></div>
+          </section>
+          <section class="panel">
+            <div class="table-heading">
+              <h2>Low Stock Watch</h2>
+              <span id="lowStockCount">0 items</span>
+            </div>
+            <div id="lowStockList" class="recent-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="adminAddProduct" class="admin-page hidden">
+        <div class="admin-head">
+          <div>
+            <span class="eyebrow">Inventory</span>
+            <h1>Add Product</h1>
+          </div>
+        </div>
+        <form id="productForm" class="panel admin-form">
+          <input id="newName" placeholder="Product name" required>
+          <select id="newCategory" required>
+            <option>Electronics</option>
+            <option>Home</option>
+          </select>
+          <input id="newCost" type="number" min="1" placeholder="Cost price" required>
+          <input id="newPrice" type="number" min="1" placeholder="Selling price" required>
+          <input id="newDiscount" type="number" min="0" max="90" placeholder="Discount %" required>
+          <input id="newStock" type="number" min="1" placeholder="Stock quantity" required>
+          <input id="newImage" type="url" placeholder="Real image URL" required>
+          <textarea id="newDescription" rows="3" placeholder="Product description" required></textarea>
+          <button class="primary-btn" type="submit">Add Product to Storefront</button>
+        </form>
+      </section>
+
+      <section id="adminInventory" class="admin-page hidden">
+        <div class="admin-head">
+          <div>
+            <span class="eyebrow">Stock control</span>
+            <h1>Product Inventory</h1>
+          </div>
+          <div class="catalog-controls">
+            <input id="inventorySearch" type="search" placeholder="Search inventory">
+          </div>
+        </div>
+        <div id="inventorySummary" class="inventory-summary-grid"></div>
+        <div class="panel table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Stock</th>
+                <th>Cost</th>
+                <th>MRP</th>
+                <th>Discount</th>
+                <th>Sale Price</th>
+                <th>Inventory Value</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="adminOrders" class="admin-page hidden">
+        <div class="admin-head">
+          <div>
+            <span class="eyebrow">Orders and refunds</span>
+            <h1>Order Management</h1>
+          </div>
+        </div>
+        <div class="panel table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Customer</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Refund</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </section>
+
+  <div id="detailModal" class="modal hidden">
+    <div class="modal-card">
+      <button id="closeDetailBtn" class="icon-close" type="button">x</button>
+      <div id="detailContent"></div>
+    </div>
+  </div>
+
+  <div id="orderPopup" class="order-popup hidden">
+    <div class="order-popup-card">
+      <div class="success-ring">✓</div>
+      <div id="orderPopupContent"></div>
+      <button class="primary-btn" type="button" data-page="shop">Return to Shop</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js"></script>
+</body>
+</html>
